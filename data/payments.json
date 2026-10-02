@@ -1,0 +1,29 @@
+[
+  {
+    "id": "pay_d6f18cf14013",
+    "student_id": "stu_106b4659f9ee",
+    "amount": 1600000,
+    "payment_date": "2026-09-21",
+    "lessons_added": 8,
+    "note": "Học phí Khóa Piano Solo Tháng 9",
+    "created_at": "2026-10-01 19:47:56"
+  },
+  {
+    "id": "pay_eeee7e065d8f",
+    "student_id": "stu_ccae77c44bcd",
+    "amount": 2400000,
+    "payment_date": "2026-09-26",
+    "lessons_added": 12,
+    "note": "Học phí Gói Jazz 12 buổi",
+    "created_at": "2026-10-01 19:47:56"
+  },
+  {
+    "id": "pay_cc8a4819188f",
+    "student_id": "stu_02d9c904b4ac",
+    "amount": 1800000,
+    "payment_date": "2026-09-29",
+    "lessons_added": 10,
+    "note": "Học phí Lớp Nhí Tháng 10",
+    "created_at": "2026-10-01 19:47:56"
+  }
+]

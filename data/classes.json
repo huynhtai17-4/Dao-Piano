@@ -1,0 +1,26 @@
+[
+  {
+    "id": "cls_e6bb45aa8c76",
+    "name": "1 Kèm 1 - alex",
+    "class_type": "ONE_ON_ONE",
+    "current_student_count": 1,
+    "max_students": 1,
+    "student_ids": [
+      "stu_a0ce48242c19"
+    ],
+    "created_at": "2026-10-02 08:49:57",
+    "updated_at": "2026-10-02 08:49:57"
+  },
+  {
+    "id": "cls_643c3a1ecc6e",
+    "name": "Online - linda",
+    "class_type": "ONLINE",
+    "current_student_count": 1,
+    "max_students": 1,
+    "student_ids": [
+      "stu_810d721de93b"
+    ],
+    "created_at": "2026-10-02 08:51:10",
+    "updated_at": "2026-10-02 08:51:10"
+  }
+]

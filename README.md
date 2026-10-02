@@ -57,18 +57,19 @@
 
 ```text
 ┌─────────────────────────────────────────────────────────────┐
-│                    PRESENTATION LAYER                       │
+│                    FRONTEND LAYER                           │
 │           (CustomTkinter 6.0+, Pillow 10.4+)                │
 │                                                             │
-│  App Shell • Sidebar (5 tabs) • Topbar                      │
+│  App Shell • Sidebar (5 tabs) • Topbar • ViewRouter         │
 │  CalendarScreen • StudentsScreen • ClassesScreen            │
 │  PaymentsScreen • SettingsScreen                            │
 │  Modal Dialogs (Student, Class, Schedule, Attendance, Pay)  │
+│  Theme Design System (Mint Emerald, Ocean Blue, Soft Purple)│
 └──────────────────────────┬──────────────────────────────────┘
-                           │ Consumes DTOs
+                           │ Consumes DTOs & Invokes Services
                            ▼
 ┌─────────────────────────────────────────────────────────────┐
-│                     APPLICATION LAYER                       │
+│                    BACKEND APPLICATION                      │
 │                                                             │
 │  StudentService • ClassService • ScheduleService            │
 │  AttendanceService • PaymentService • ReminderService       │
@@ -77,7 +78,7 @@
                            │ Orchestrates Models & Repositories
                            ▼
 ┌─────────────────────────────────────────────────────────────┐
-│                       DOMAIN LAYER                          │
+│                      BACKEND DOMAIN                         │
 │                                                             │
 │  Entities: Student, ClassModel, Schedule, Attendance, Pay   │
 │  Enums: ClassType, AttendanceStatus, ScheduleStatus         │
@@ -86,11 +87,11 @@
                            ▲
                            │ Implements Contracts
 ┌──────────────────────────┴──────────────────────────────────┐
-│                   INFRASTRUCTURE LAYER                      │
+│                  BACKEND INFRASTRUCTURE                     │
 │                                                             │
 │  JsonStudentRepository • JsonClassRepository                │
 │  JsonScheduleRepository • JsonAttendanceRepository          │
-│  JsonPaymentRepository                                      │
+│  JsonPaymentRepository • JsonHolidayRepository              │
 │  Atomic Writer (tempfile + fsync + os.replace)              │
 │  BackupManager • DataInitializer                            │
 └──────────────────────────┬──────────────────────────────────┘
@@ -105,97 +106,104 @@
 
 ```text
 DaoPiano/
-├── main.py                    # Điểm khởi chạy ứng dụng
+├── main.py                    # Điểm khởi chạy ứng dụng (Bootstrap & App Shell)
 ├── requirements.txt           # Danh sách thư viện phụ thuộc
+├── pytest.ini                 # Cấu hình Pytest
 ├── README.md                  # Tài liệu hướng dẫn
 ├── .gitignore
 │
-├── config/                    # Cấu hình & Theme Design System
-│   ├── app_config.py
-│   ├── constants.py
-│   └── theme.py
+├── frontend/                  # TOÀN BỘ GIAO DIỆN (FRONTEND GUI)
+│   ├── app.py                 # Cửa sổ chính PianoApp
+│   ├── router.py              # Bộ điều hướng chuyển màn hình ViewRouter
+│   ├── theme.py               # Design System: Colors, Fonts, Geometry
+│   ├── components/            # Các thành phần giao diện tái sử dụng
+│   │   ├── icon_loader.py     # Quản lý & cache icon SVG/PNG
+│   │   ├── sidebar.py         # Thanh điều hướng bên trái
+│   │   ├── topbar.py          # Thanh tiêu đề và trạng thái
+│   │   ├── buttons.py         # Nút bấm theo style neumorphism
+│   │   ├── cards.py           # Khối hiển thị thẻ
+│   │   ├── badges.py          # Huy hiệu trạng thái
+│   │   ├── table.py           # Bảng dữ liệu tùy biến
+│   │   ├── calendar_picker.py # Bộ chọn ngày lịch trực quan
+│   │   ├── dialogs.py         # Khung popup cơ bản
+│   │   ├── toast.py           # Thông báo nổi (Toasts)
+│   │   ├── empty_state.py     # Giao diện khi danh sách trống
+│   │   └── loading.py         # Vòng quay tải trang
+│   ├── dialogs/               # Các cửa sổ thao tác chi tiết
+│   │   ├── student_dialog.py  # Thêm / Sửa học sinh & chọn lịch tuần
+│   │   ├── class_dialog.py    # Thêm / Sửa lớp học
+│   │   ├── schedule_dialog.py # Thêm ca học đơn lẻ
+│   │   ├── attendance_dialog.py # Điểm danh ca học
+│   │   ├── payment_dialog.py  # Thu học phí & cộng buổi
+│   │   ├── reschedule_dialog.py # Đổi lịch học bù cho học sinh
+│   │   ├── quick_lessons_dialog.py # Điều chỉnh buổi học nhanh
+│   │   └── holiday_dialog.py  # Quản lý ngày nghỉ lễ
+│   └── screens/               # 5 Màn hình chức năng chính
+│       ├── calendar_screen.py # Lịch biểu tuần (Weekly Calendar)
+│       ├── students_screen.py # Quản lý học sinh
+│       ├── classes_screen.py  # Quản lý lớp học
+│       ├── payments_screen.py # Quản lý học phí
+│       └── settings_screen.py # Cài đặt & Sao lưu dữ liệu
 │
-├── core/                      # Các tiện ích nền tảng độc lập
-│   ├── exceptions.py
-│   ├── result.py
-│   ├── enums.py
-│   ├── ids.py
-│   ├── dates.py
-│   ├── time_utils.py
-│   ├── validators.py
-│   └── event_bus.py
-│
-├── domain/                    # Thực thể nghiệp vụ & Repository contracts
-│   ├── models/
-│   │   ├── student.py
-│   │   ├── class_model.py
-│   │   ├── schedule.py
-│   │   ├── attendance.py
-│   │   ├── payment.py
-│   │   └── reminder.py
-│   └── repositories/
-│       ├── student_repository.py
-│       ├── class_repository.py
-│       ├── schedule_repository.py
-│       ├── attendance_repository.py
-│       └── payment_repository.py
-│
-├── infrastructure/            # Tầng lưu trữ tệp tin nguyên tử & JSON
-│   ├── storage/
-│   │   ├── atomic_writer.py
-│   │   ├── json_storage.py
-│   │   ├── backup_manager.py
-│   │   └── data_initializer.py
-│   └── repositories/
-│       ├── json_student_repository.py
-│       ├── json_class_repository.py
-│       ├── json_schedule_repository.py
-│       ├── json_attendance_repository.py
-│       └── json_payment_repository.py
-│
-├── application/               # Dịch vụ ứng dụng & DTOs
-│   ├── dto/
-│   │   ├── student_dto.py
-│   │   ├── class_dto.py
-│   │   ├── schedule_dto.py
-│   │   ├── attendance_dto.py
-│   │   └── payment_dto.py
-│   └── services/
-│       ├── student_service.py
-│       ├── class_service.py
-│       ├── schedule_service.py
-│       ├── attendance_service.py
-│       ├── payment_service.py
-│       ├── reminder_service.py
-│       └── dashboard_service.py
-│
-├── presentation/              # Giao diện CustomTkinter & Pillow
-│   ├── app.py
-│   ├── router.py
-│   ├── components/
-│   │   ├── icon_loader.py
-│   │   ├── sidebar.py
-│   │   ├── topbar.py
-│   │   ├── buttons.py
-│   │   ├── cards.py
-│   │   ├── badges.py
-│   │   ├── table.py
-│   │   ├── dialogs.py
-│   │   ├── toast.py
-│   │   ├── empty_state.py
-│   │   └── loading.py
-│   ├── dialogs/
-│   │   ├── student_dialog.py
-│   │   ├── class_dialog.py
-│   │   ├── schedule_dialog.py
-│   │   ├── attendance_dialog.py
-│   │   └── payment_dialog.py
-│   └── screens/
-│       ├── calendar_screen.py
-│       ├── students_screen.py
-│       ├── classes_screen.py
-│       ├── payments_screen.py
-│       └── settings_screen.py
+├── backend/                   # TOÀN BỘ LOGIC NGHIỆP VỤ & LƯU TRỮ (BACKEND)
+│   ├── config/                # Cấu hình hệ thống
+│   │   ├── app_config.py      # Đọc/ghi cấu hình trung tâm
+│   │   ├── constants.py       # Hằng số ứng dụng
+│   │   └── theme.py           # Re-export theme tương thích ngược
+│   ├── core/                  # Tiện ích nền tảng (Shared Kernel)
+│   │   ├── exceptions.py      # Hệ thống ngoại lệ tùy chỉnh
+│   │   ├── result.py          # Kiểu Result (Ok / Err)
+│   │   ├── enums.py           # Các enum định danh
+│   │   ├── ids.py             # Sinh mã định danh ngẫu nhiên
+│   │   ├── dates.py           # Tiện ích xử lý ngày tháng
+│   │   ├── time_utils.py      # Tiện ích xử lý giờ & chống trùng lịch
+│   │   ├── validators.py      # Tiện ích kiểm tra tính hợp lệ dữ liệu
+│   │   └── event_bus.py       # Event Bus phân tách giao tiếp lỏng
+│   ├── domain/                # Thực thể nghiệp vụ & Repository contracts
+│   │   ├── models/            # Domain Entities (Pydantic v2)
+│   │   │   ├── student.py
+│   │   │   ├── class_model.py
+│   │   │   ├── schedule.py
+│   │   │   ├── attendance.py
+│   │   │   ├── payment.py
+│   │   │   ├── holiday.py
+│   │   │   └── reminder.py
+│   │   └── repositories/      # Abstract Repository Interfaces (ABCs)
+│   │       ├── student_repository.py
+│   │       ├── class_repository.py
+│   │       ├── schedule_repository.py
+│   │       ├── attendance_repository.py
+│   │       ├── payment_repository.py
+│   │       └── holiday_repository.py
+│   ├── infrastructure/        # Tầng lưu trữ tệp tin nguyên tử & JSON
+│   │   ├── storage/
+│   │   │   ├── atomic_writer.py # Ghi file nguyên tử fsync + replace
+│   │   │   ├── json_storage.py  # Cache in-memory & quản lý IO
+│   │   │   ├── backup_manager.py # Sao lưu & Khôi phục snapshot
+│   │   │   └── data_initializer.py # Khởi tạo dữ liệu mặc định
+│   │   └── repositories/      # Triển khai Repository bằng JSON
+│   │       ├── json_student_repository.py
+│   │       ├── json_class_repository.py
+│   │       ├── json_schedule_repository.py
+│   │       ├── json_attendance_repository.py
+│   │       ├── json_payment_repository.py
+│   │       └── json_holiday_repository.py
+│   └── application/           # Dịch vụ ứng dụng & DTOs
+│       ├── dto/               # Data Transfer Objects
+│       │   ├── student_dto.py
+│       │   ├── class_dto.py
+│       │   ├── schedule_dto.py
+│       │   ├── attendance_dto.py
+│       │   └── payment_dto.py
+│       └── services/          # Application Services
+│           ├── student_service.py
+│           ├── class_service.py
+│           ├── schedule_service.py
+│           ├── attendance_service.py
+│           ├── payment_service.py
+│           ├── reminder_service.py
+│           ├── holiday_service.py
+│           └── dashboard_service.py
 │
 ├── data/                      # Lưu trữ dữ liệu JSON (Tự khởi tạo)
 │   ├── students.json

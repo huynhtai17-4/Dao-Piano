@@ -1,0 +1,12 @@
+{
+  "center_name": "Melody Piano Studio",
+  "teacher_name": "Thầy Đào",
+  "phone": "0912345678",
+  "theme": "light",
+  "first_day_of_week": "MON",
+  "default_lesson_duration": 60,
+  "default_start_hour": 7,
+  "default_end_hour": 20,
+  "backup_enabled": true,
+  "backup_frequency": "daily"
+}
