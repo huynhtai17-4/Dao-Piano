@@ -18,13 +18,12 @@ from backend.application.services.attendance_service import AttendanceService
 from backend.application.services.payment_service import PaymentService
 from backend.application.services.holiday_service import HolidayService
 from backend.application.dto.schedule_dto import ScheduleResponseDTO
-from backend.application.dto.attendance_dto import AttendanceCreateDTO
 from frontend.components.cards import GlassCard
 from frontend.components.buttons import PrimaryButton, OutlineButton, IconButton
 from frontend.components.icon_loader import IconLoader
 from frontend.components.dialogs import ConfirmDialog, BaseModalDialog
 from frontend.dialogs.schedule_dialog import ScheduleDialog
-from frontend.dialogs.attendance_dialog import AttendanceDialog, ClassAttendanceDialog
+from frontend.dialogs.attendance_dialog import AttendanceDialog
 from frontend.dialogs.payment_dialog import PaymentDialog
 from frontend.dialogs.holiday_dialog import HolidayDialog
 from frontend.components.toast import ToastManager

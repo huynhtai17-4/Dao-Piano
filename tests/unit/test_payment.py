@@ -2,7 +2,6 @@
 
 import tempfile
 import pytest
-from backend.core.exceptions import ValidationError
 from backend.infrastructure.storage.json_storage import JsonStorage
 from backend.infrastructure.repositories.json_student_repository import JsonStudentRepository
 from backend.infrastructure.repositories.json_payment_repository import JsonPaymentRepository

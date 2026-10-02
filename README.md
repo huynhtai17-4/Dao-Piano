@@ -123,12 +123,9 @@ DaoPiano/
 │   │   ├── buttons.py         # Nút bấm theo style neumorphism
 │   │   ├── cards.py           # Khối hiển thị thẻ
 │   │   ├── badges.py          # Huy hiệu trạng thái
-│   │   ├── table.py           # Bảng dữ liệu tùy biến
 │   │   ├── calendar_picker.py # Bộ chọn ngày lịch trực quan
 │   │   ├── dialogs.py         # Khung popup cơ bản
-│   │   ├── toast.py           # Thông báo nổi (Toasts)
-│   │   ├── empty_state.py     # Giao diện khi danh sách trống
-│   │   └── loading.py         # Vòng quay tải trang
+│   │   └── toast.py           # Thông báo nổi (Toasts)
 │   ├── dialogs/               # Các cửa sổ thao tác chi tiết
 │   │   ├── student_dialog.py  # Thêm / Sửa học sinh & chọn lịch tuần
 │   │   ├── class_dialog.py    # Thêm / Sửa lớp học
@@ -152,7 +149,6 @@ DaoPiano/
 │   │   └── theme.py           # Re-export theme tương thích ngược
 │   ├── core/                  # Tiện ích nền tảng (Shared Kernel)
 │   │   ├── exceptions.py      # Hệ thống ngoại lệ tùy chỉnh
-│   │   ├── result.py          # Kiểu Result (Ok / Err)
 │   │   ├── enums.py           # Các enum định danh
 │   │   ├── ids.py             # Sinh mã định danh ngẫu nhiên
 │   │   ├── dates.py           # Tiện ích xử lý ngày tháng

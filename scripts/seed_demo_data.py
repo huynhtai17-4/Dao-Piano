@@ -9,7 +9,7 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-from backend.core.enums import ClassType, ScheduleStatus, AttendanceStatus
+from backend.core.enums import ClassType, AttendanceStatus
 from backend.core.dates import today_date, get_week_days, format_date_iso
 from backend.infrastructure.storage.json_storage import JsonStorage
 from backend.infrastructure.repositories.json_student_repository import JsonStudentRepository

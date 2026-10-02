@@ -24,16 +24,6 @@ def time_to_minutes(time_str: str) -> int:
     return hours * 60 + minutes
 
 
-def minutes_to_time(minutes: int) -> str:
-    """Convert minutes since midnight back to HH:MM string.
-
-    Example: 450 -> "07:30"
-    """
-    minutes = minutes % (24 * 60)
-    hours = minutes // 60
-    mins = minutes % 60
-    return f"{hours:02d}:{mins:02d}"
-
 
 def is_time_overlap(start_a: str, end_a: str, start_b: str, end_b: str) -> bool:
     """Determine whether two time intervals [start_a, end_a) and [start_b, end_b) overlap.

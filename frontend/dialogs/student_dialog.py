@@ -1,13 +1,12 @@
 """Dialog for registering or editing a student with multi-session offline class selection and automatic 1-on-1/Online class creation."""
 
 from __future__ import annotations
-from datetime import date, timedelta
 from typing import Optional, Callable, List, Dict, Tuple
 import customtkinter as ctk
 
 from frontend.theme import Theme
 from backend.core.enums import ClassType, ScheduleStatus
-from backend.core.dates import today_date, today_str, get_week_days, format_date_iso, parse_date
+from backend.core.dates import today_date, today_str, parse_date
 from backend.core.time_utils import is_time_overlap, time_to_minutes, validate_time_format
 from backend.core.validators import validate_phone, sanitize_phone, validate_non_empty_str
 from backend.application.services.student_service import StudentService
@@ -15,7 +14,6 @@ from backend.application.services.class_service import ClassService
 from backend.application.services.schedule_service import ScheduleService
 from backend.application.dto.student_dto import StudentCreateDTO, StudentUpdateDTO, StudentResponseDTO
 from backend.application.dto.class_dto import ClassCreateDTO
-from backend.application.dto.schedule_dto import ScheduleCreateDTO
 from frontend.components.dialogs import BaseModalDialog
 from frontend.components.buttons import PrimaryButton, OutlineButton
 from frontend.dialogs.class_dialog import ClassDialog

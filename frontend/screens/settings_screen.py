@@ -6,8 +6,7 @@ from frontend.theme import Theme
 from backend.config.app_config import AppConfig
 from backend.infrastructure.storage.backup_manager import BackupManager
 from frontend.components.cards import GlassCard
-from frontend.components.buttons import PrimaryButton, OutlineButton, DangerButton
-from frontend.components.icon_loader import IconLoader
+from frontend.components.buttons import PrimaryButton, OutlineButton
 from frontend.components.toast import ToastManager
 from frontend.components.dialogs import ConfirmDialog
 

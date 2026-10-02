@@ -2,14 +2,14 @@
 
 from __future__ import annotations
 import calendar
-from datetime import datetime, date, timedelta
+from datetime import date, timedelta
 from typing import Optional, Callable, Dict, List
 import customtkinter as ctk
 
 from frontend.theme import Theme
 from backend.core.dates import parse_date, format_date_iso, format_date_display, today_date, today_str, WEEKDAY_VN
 from backend.core.time_utils import is_time_overlap, time_to_minutes
-from backend.core.enums import AttendanceStatus, ClassType, ScheduleStatus
+from backend.core.enums import ClassType, ScheduleStatus
 from backend.application.services.schedule_service import ScheduleService
 from backend.application.services.student_service import StudentService
 from backend.application.services.class_service import ClassService

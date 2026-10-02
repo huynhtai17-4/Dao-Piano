@@ -4,7 +4,6 @@ from __future__ import annotations
 from typing import Optional, Callable
 import customtkinter as ctk
 from frontend.theme import Theme
-from backend.core.enums import ClassType, ScheduleStatus
 from backend.application.services.schedule_service import ScheduleService
 from backend.application.services.student_service import StudentService
 from backend.application.services.class_service import ClassService

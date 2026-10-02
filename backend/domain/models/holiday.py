@@ -1,7 +1,6 @@
 """Holiday and Leave domain entity representing teacher day-offs and school holidays."""
 
 from __future__ import annotations
-from typing import Optional
 from pydantic import BaseModel, Field, field_validator, model_validator, ConfigDict
 
 from backend.core.ids import generate_id

@@ -9,7 +9,7 @@ if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
 from backend.infrastructure.storage.json_storage import JsonStorage
-from backend.infrastructure.storage.data_initializer import DataInitializer, DEFAULT_SETTINGS
+from backend.infrastructure.storage.data_initializer import DEFAULT_SETTINGS
 
 
 def reset_all_data() -> None:

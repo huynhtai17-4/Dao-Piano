@@ -2,11 +2,11 @@
 
 from __future__ import annotations
 from datetime import date, timedelta
-from typing import Optional, Callable, List
+from typing import Optional, Callable
 import customtkinter as ctk
 
 from frontend.theme import Theme
-from backend.core.dates import today_date, today_str, format_date_iso, format_date_display, parse_date, WEEKDAY_VN
+from backend.core.dates import today_date, format_date_display, parse_date
 from backend.core.time_utils import validate_time_format, time_to_minutes
 from backend.application.services.holiday_service import HolidayService
 from frontend.components.dialogs import BaseModalDialog, ConfirmDialog

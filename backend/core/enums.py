@@ -87,9 +87,3 @@ class ReminderSeverity(StrEnum):
     WARNING = "WARNING"
     CRITICAL = "CRITICAL"
 
-
-class ThemeMode(StrEnum):
-    """UI Color theme mode."""
-
-    LIGHT = "light"
-    DARK = "dark"

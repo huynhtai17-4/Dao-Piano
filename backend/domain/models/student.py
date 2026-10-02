@@ -6,7 +6,7 @@ from pydantic import BaseModel, Field, field_validator, ConfigDict
 
 from backend.core.enums import ClassType
 from backend.core.ids import generate_id
-from backend.core.dates import now_iso, today_str
+from backend.core.dates import now_iso
 from backend.core.validators import validate_phone, sanitize_phone
 
 

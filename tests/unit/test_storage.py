@@ -3,10 +3,9 @@
 import tempfile
 import pytest
 from pathlib import Path
-from backend.infrastructure.storage.atomic_writer import write_atomic_json
 from backend.infrastructure.storage.json_storage import JsonStorage
 from backend.infrastructure.storage.backup_manager import BackupManager
-from backend.core.exceptions import CorruptedDataError, StorageError
+from backend.core.exceptions import CorruptedDataError
 
 
 def test_atomic_write_and_read():

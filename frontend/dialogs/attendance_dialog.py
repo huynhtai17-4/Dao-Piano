@@ -1,14 +1,13 @@
 """Modal dialog for marking student attendance and managing lesson balance adjustments."""
 
 from __future__ import annotations
-from typing import Optional, Callable, Dict, List
+from typing import Optional, Callable, Dict
 import customtkinter as ctk
-from frontend.theme import Theme
 from datetime import date, timedelta
 from frontend.theme import Theme
 from backend.core.enums import AttendanceStatus, ScheduleStatus
 from backend.core.event_bus import event_bus
-from backend.core.dates import parse_date, format_date_display, format_date_iso, today_date, WEEKDAY_VN
+from backend.core.dates import parse_date, format_date_display, today_date, WEEKDAY_VN
 from backend.core.time_utils import is_time_overlap, time_to_minutes, validate_time_format
 from backend.application.services.attendance_service import AttendanceService
 from backend.application.services.student_service import StudentService

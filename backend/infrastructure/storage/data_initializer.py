@@ -1,6 +1,5 @@
 """Data directory and initial schema bootstrapping."""
 
-from pathlib import Path
 from backend.infrastructure.storage.json_storage import JsonStorage
 
 DEFAULT_SETTINGS = {

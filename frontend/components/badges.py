@@ -3,7 +3,7 @@
 from __future__ import annotations
 import customtkinter as ctk
 from frontend.theme import Theme
-from backend.core.enums import ClassType, AttendanceStatus, ScheduleStatus
+from backend.core.enums import ClassType, AttendanceStatus
 
 
 class Badge(ctk.CTkFrame):

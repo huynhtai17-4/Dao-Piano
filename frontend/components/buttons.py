@@ -27,27 +27,6 @@ class PrimaryButton(ctk.CTkButton):
         )
 
 
-class OceanButton(ctk.CTkButton):
-    """Ocean blue button for secondary primary actions."""
-
-    def __init__(self, master, text: str, command: Optional[Callable] = None, icon: Optional[ctk.CTkImage] = None, width: int = 140, height: int = 38, **kwargs):
-        super().__init__(
-            master=master,
-            text=text,
-            image=icon,
-            command=command,
-            width=width,
-            height=height,
-            fg_color=Theme.colors.OCEAN,
-            hover_color=Theme.colors.OCEAN_HOVER,
-            text_color=Theme.colors.TEXT_WHITE,
-            font=Theme.fonts.BODY_BOLD,
-            corner_radius=Theme.radius.BUTTON,
-            compound="left",
-            **kwargs,
-        )
-
-
 class OutlineButton(ctk.CTkButton):
     """Subtle bordered white surface button."""
 

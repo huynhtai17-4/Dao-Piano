@@ -1,7 +1,6 @@
 """Top header bar component."""
 
 from __future__ import annotations
-from typing import Optional
 from datetime import datetime
 import customtkinter as ctk
 from frontend.theme import Theme

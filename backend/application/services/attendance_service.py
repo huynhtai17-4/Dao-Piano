@@ -1,12 +1,12 @@
 """Attendance tracking service enforcing lesson balance invariance and idempotency."""
 
 from __future__ import annotations
-from typing import List, Optional
+from typing import List
 from backend.domain.models.attendance import Attendance
 from backend.domain.repositories.attendance_repository import AttendanceRepository
 from backend.domain.repositories.student_repository import StudentRepository
 from backend.domain.repositories.schedule_repository import ScheduleRepository
-from backend.application.dto.attendance_dto import AttendanceCreateDTO, AttendanceUpdateDTO, AttendanceResponseDTO
+from backend.application.dto.attendance_dto import AttendanceCreateDTO, AttendanceResponseDTO
 from backend.core.enums import AttendanceStatus
 from backend.core.exceptions import NotFoundError, InsufficientLessonsError
 from backend.core.event_bus import event_bus

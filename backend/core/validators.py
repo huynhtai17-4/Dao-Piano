@@ -27,17 +27,3 @@ def validate_non_empty_str(value: str, field_name: str = "Trường") -> str:
     return stripped
 
 
-def validate_positive_number(value: int | float, field_name: str = "Giá trị") -> int:
-    """Validate that numeric value is strictly positive (> 0)."""
-    val = int(value)
-    if val <= 0:
-        raise ValueError(f"{field_name} phải lớn hơn 0.")
-    return val
-
-
-def validate_non_negative_number(value: int | float, field_name: str = "Giá trị") -> int:
-    """Validate that numeric value is non-negative (>= 0)."""
-    val = int(value)
-    if val < 0:
-        raise ValueError(f"{field_name} không được là số âm.")
-    return val

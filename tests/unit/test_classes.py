@@ -3,7 +3,7 @@
 import tempfile
 import pytest
 from backend.core.enums import ClassType
-from backend.core.exceptions import ClassEditRestrictedError, BusinessRuleViolationError
+from backend.core.exceptions import ClassEditRestrictedError
 from backend.infrastructure.storage.json_storage import JsonStorage
 from backend.infrastructure.repositories.json_class_repository import JsonClassRepository
 from backend.infrastructure.repositories.json_student_repository import JsonStudentRepository

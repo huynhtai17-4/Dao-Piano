@@ -3,8 +3,6 @@
 from __future__ import annotations
 from typing import Optional
 from pydantic import BaseModel, Field, field_validator, ConfigDict
-from backend.core.time_utils import format_currency_vnd
-from backend.core.dates import format_date_display
 
 
 class PaymentCreateDTO(BaseModel):

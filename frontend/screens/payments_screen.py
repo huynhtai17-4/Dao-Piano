@@ -1,7 +1,6 @@
 """Tuition payment status screen listing paid and unpaid students with class filters."""
 
 from __future__ import annotations
-from typing import Optional, List
 import customtkinter as ctk
 
 from frontend.theme import Theme

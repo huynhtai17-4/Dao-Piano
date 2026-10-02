@@ -1,7 +1,6 @@
 """Unit tests for offline rescheduling, upcoming sessions, and new class creation constraints."""
 
 import tempfile
-import pytest
 from backend.core.enums import ClassType
 from backend.core.time_utils import is_time_overlap
 from backend.infrastructure.storage.json_storage import JsonStorage
